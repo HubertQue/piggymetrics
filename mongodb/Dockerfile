@@ -1,6 +1,12 @@
 FROM mongo:3
 MAINTAINER Alexander Lukyanchikov <sqshq@sqshq.com>
 
+ENV CONFIG_SERVICE_PASSWORD=password \
+    NOTIFICATION_SERVICE_PASSWORD=password \
+    STATISTICS_SERVICE_PASSWORD=password \
+    ACCOUNT_SERVICE_PASSWORD=password \
+    MONGODB_PASSWORD=password
+
 ADD init.sh /init.sh
 ADD ./dump /
 

@@ -5,7 +5,8 @@ ENV CONFIG_SERVICE_PASSWORD=password \
     NOTIFICATION_SERVICE_PASSWORD=password \
     STATISTICS_SERVICE_PASSWORD=password \
     ACCOUNT_SERVICE_PASSWORD=password \
-    MONGODB_PASSWORD=password
+    MONGODB_PASSWORD=password \
+    INIT_DUMP=account-service-dump.js
 
 ADD init.sh /init.sh
 ADD ./dump /

@@ -24,4 +24,4 @@ security:
 
 spring:
   rabbitmq:
-    host: rabbitmq
+    host: rabbitmq-5t2jnrnrca-uc.a.run.app

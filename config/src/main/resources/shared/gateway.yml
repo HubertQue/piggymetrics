@@ -1,3 +1,9 @@
+eureka:
+  instance:
+    ip-address: 34.136.223.48
+    non-secure-port: 4000
+
+
 hystrix:
   command:
     default:

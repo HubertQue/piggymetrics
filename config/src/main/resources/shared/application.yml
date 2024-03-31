@@ -15,16 +15,16 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://registry:8761/eureka/
+      defaultZone: http://34.136.223.48:8761/eureka/
 
 security:
   oauth2:
     resource:
-      user-info-uri: http://auth-service:5000/uaa/users/current
+      user-info-uri: http://34.30.207.214:5000/uaa/users/current
 
 spring:
   rabbitmq:
     host: rabbitmq-5t2jnrnrca-uc.a.run.app
     port: 443
     ssl:
-      enabled: true 
+      enabled: true

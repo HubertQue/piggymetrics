@@ -25,3 +25,6 @@ security:
 spring:
   rabbitmq:
     host: rabbitmq-5t2jnrnrca-uc.a.run.app
+    port: 443
+    ssl:
+      enabled: true 

@@ -19,7 +19,7 @@ zuul:
   routes:
     auth-service:
         path: /uaa/**
-        url: 34.135.193.104:5000
+        url: 34.30.207.214:5000
         stripPrefix: false
         sensitiveHeaders:
 

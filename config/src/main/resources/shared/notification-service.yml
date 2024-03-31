@@ -1,3 +1,9 @@
+eureka:
+  instance:
+    ip-address: 35.225.105.172
+    non-secure-port: 8000
+
+
 security:
   oauth2:
     client:

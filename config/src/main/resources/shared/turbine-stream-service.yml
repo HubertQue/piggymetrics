@@ -1,0 +1,4 @@
+eureka:
+  instance:
+    ip-address: 34.135.193.104
+    non-secure-port: 8989

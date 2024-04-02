@@ -43,9 +43,8 @@ public class AccountController {
 	}
 
 	@PutMapping(path = "/current")
-    public Mono<ResponseEntity<?>> saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
+    public Mono<ResponseEntity<Account>> saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
         return accountService.saveChanges(principal.getName(), account)
-            .map(savedAccount -> ResponseEntity.ok().body(savedAccount))
-            .defaultIfEmpty(ResponseEntity.notFound().build());
+            .map(savedAccount -> ResponseEntity.ok(savedAccount));
     }
 }

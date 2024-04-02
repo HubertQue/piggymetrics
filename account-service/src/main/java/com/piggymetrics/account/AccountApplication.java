@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableAsync
 public class AccountApplication {
 
 	public static void main(String[] args) {

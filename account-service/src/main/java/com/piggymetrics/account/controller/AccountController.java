@@ -42,7 +42,7 @@ public class AccountController {
 		return accountService.create(user);
 	}
 
-	@PutMapping(path = "/current", method = RequestMethod.PUT)
+	@PutMapping(path = "/current")
     public Mono<ResponseEntity<?>> saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
         return accountService.saveChanges(principal.getName(), account)
             .map(savedAccount -> ResponseEntity.ok().body(savedAccount))

@@ -40,5 +40,5 @@ public interface AccountService {
 	 * @param name
 	 * @param update
 	 */
-	void saveChanges(String name, Account update);
+	Mono<Account> saveChanges(String name, Account update);
 }

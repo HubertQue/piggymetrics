@@ -30,17 +30,19 @@ public class AccountController {
 		return accountService.findByName(principal.getName());
 	}
 
+	/*
 	@RequestMapping(path = "/current", method = RequestMethod.PUT)
 	public void saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
 		accountService.saveChanges(principal.getName(), account);
 	}
+	*/
 
 	@RequestMapping(path = "/", method = RequestMethod.POST)
 	public Account createNewAccount(@Valid @RequestBody User user) {
 		return accountService.create(user);
 	}
 
-	@PutMapping("/current")
+	@PutMapping(path = "/current", method = RequestMethod.PUT)
     public Mono<ResponseEntity<?>> saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
         return accountService.saveChanges(principal.getName(), account)
             .map(savedAccount -> ResponseEntity.ok().body(savedAccount))

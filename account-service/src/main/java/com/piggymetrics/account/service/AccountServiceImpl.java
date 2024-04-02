@@ -95,6 +95,10 @@ public class AccountServiceImpl implements AccountService {
 		statisticsClient.updateStatistics(name, account);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Mono<Account> saveChanges(String name, Account update) {
         return accountReactiveRepository.findByName(name)
             .doOnSuccess(account -> {

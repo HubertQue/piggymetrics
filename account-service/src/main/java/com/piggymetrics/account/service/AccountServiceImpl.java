@@ -7,11 +7,13 @@ import com.piggymetrics.account.domain.Currency;
 import com.piggymetrics.account.domain.Saving;
 import com.piggymetrics.account.domain.User;
 import com.piggymetrics.account.repository.AccountRepository;
+import com.piggymetrics.account.repository.AccountReactiveRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -29,6 +31,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountRepository repository;
+
+	@Autowired
+	private AccountReactiveRepository accountReactiveRepository;
 
 	/**
 	 * {@inheritDoc}
@@ -73,7 +78,7 @@ public class AccountServiceImpl implements AccountService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void saveChanges(String name, Account update) {
+	public void saveChanges_Sync(String name, Account update) {
 
 		Account account = repository.findByName(name);
 		Assert.notNull(account, "can't find account with name " + name);
@@ -89,4 +94,23 @@ public class AccountServiceImpl implements AccountService {
 
 		statisticsClient.updateStatistics(name, account);
 	}
+
+	public Mono<Account> saveChanges(String name, Account update) {
+        return accountReactiveRepository.findByName(name)
+            .doOnSuccess(account -> {
+                // 确保账户存在
+                if (account == null) {
+                    throw new RuntimeException("Can't find account with name " + name);
+                }
+                
+                // 更新账户信息
+                account.setIncomes(update.getIncomes());
+                account.setExpenses(update.getExpenses());
+                account.setSaving(update.getSaving());
+                account.setNote(update.getNote());
+                account.setLastSeen(new Date());
+            })
+            .flatMap(accountReactiveRepository::save); // 异步保存账户
+    }
+
 }

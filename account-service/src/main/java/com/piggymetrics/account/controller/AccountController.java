@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.ResponseEntity;
+import reactor.core.publisher.Mono;
+
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -36,4 +39,11 @@ public class AccountController {
 	public Account createNewAccount(@Valid @RequestBody User user) {
 		return accountService.create(user);
 	}
+
+	@PutMapping("/current")
+    public Mono<ResponseEntity<?>> saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
+        return accountService.saveChanges(principal.getName(), account)
+            .map(savedAccount -> ResponseEntity.ok().body(savedAccount))
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 }

@@ -884,16 +884,21 @@ function jsonDataSave() {
                     currency: user.checkedCurr,
                     interest: savings.percent
                 }
-            }),
-            success: function () {
+            })
+        }).done(function (response, textStatus, jqXHR) {
+            // 根据jqXHR.status检查响应状态
+            if(jqXHR.status === 200) {
+                // 处理成功保存
                 $("#leftborder, #rightborder, #centerborder").addClass("saveaction");
                 setTimeout(function() {
                     $("#leftborder, #rightborder, #centerborder").removeClass("saveaction");
                 }, 400);
-            },
-            error: function () {
-                alert("An error during data saving. Please, try again later");
+            } else {
+                // 可以处理其他状态码
             }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            // 处理失败情况，可以根据jqXHR.status进行更详细的处理
+            alert("An error during data saving. Please, try again later. Error: " + errorThrown);
         });
     }
 }

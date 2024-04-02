@@ -30,5 +30,15 @@ public interface AccountService {
 	 * @param name
 	 * @param update
 	 */
+	void saveChanges_Sync(String name, Account update);
+
+	/**
+	 * Validates and applies incoming account updates
+	 * Invokes Statistics Service update
+	 * Async
+	 *
+	 * @param name
+	 * @param update
+	 */
 	void saveChanges(String name, Account update);
 }

@@ -16,7 +16,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableReactiveMongoRepositories(basePackages = "com.piggymetrics.account.repository")
+@EnableReactiveMongoRepositories(basePackages = "com.piggymetrics.account.repository.async")
+@EnableMongoRepositories(basePackages = "com.piggymetrics.account.repository.sync")
 @EnableAsync
 public class AccountApplication {
 

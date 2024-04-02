@@ -1,4 +1,4 @@
-package com.piggymetrics.account.repository;
+package com.piggymetrics.account.repository.sync;
 
 import com.piggymetrics.account.domain.Account;
 import org.springframework.data.repository.CrudRepository;

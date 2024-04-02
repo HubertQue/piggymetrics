@@ -1,4 +1,4 @@
-package com.piggymetrics.account.repository;
+package com.piggymetrics.account.repository.async;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import com.piggymetrics.account.domain.Account;

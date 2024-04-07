@@ -1,6 +1,6 @@
 eureka:
   instance:
-    ip-address: 34.136.223.48
+    ip-address: 34.80.5.207
     non-secure-port: 7000
 
 security:
@@ -15,7 +15,7 @@ security:
 spring:
   data:
     mongodb:
-      host: 34.136.223.48
+      host: 34.80.5.207
       username: user
       password: ${MONGODB_PASSWORD}
       database: piggymetrics
